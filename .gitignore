@@ -42,5 +42,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
 /.vscode/settings.json
 /.editorconfig
+client/node_modules/*

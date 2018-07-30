@@ -1,0 +1,15 @@
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
+    <h1 mat-dialog-title>New Post</h1>
+    <mat-dialog-content>
+        <mat-form-field>
+            <input matInput type="text" formControlName="title" placeholder="title">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" formControlName="text" placeholder="title">
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button [disabled]="!form.valid" color="primary">Save</button>
+        <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+</form>

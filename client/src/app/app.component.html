@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  Bonnie's Dog Blog
+  <span class="spacer"></span>
+  <mat-icon matTooltip="Add a new post" (click)="new()">add</mat-icon>
+</mat-toolbar>
+
+<!--  Display Published Posts -->
+<mat-tab-group>
+  <mat-tab label="Posts">
+    <ng-container *ngFor="let post of feed | async; let i = index" [attr.data-index]="i">
+      <mat-card>
+        <mat-card-title>
+          {{ post.title }}
+        </mat-card-title>
+        <mat-card-content>
+          <img src="src/assets/images/{{ i + 5 }}.jpg"> {{ post.text }}
+        </mat-card-content>
+        <mat-card-actions>
+          <span class="spacer"></span>
+          <button mat-raised-button color="primary">Read More</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </mat-tab>
+
+  <!-- Display Unpublished Drafts -->
+  <mat-tab label="Drafts">
+    <ng-container *ngFor="let post of drafts | async; let i = index" [attr.data-index]="i">
+      <mat-card>
+        <mat-card-title>
+          {{ post.title }}
+        </mat-card-title>
+        <mat-card-content>
+          <img src="src/assets/images/{{ i + 1 }}.jpg"> {{ post.text }}
+        </mat-card-content>
+        <mat-card-actions>
+          <span class="spacer"></span>
+          <button mat-raised-button color="accent" *ngIf="!post.isPublished " (click)="publish(post.id) ">Publish</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+  </mat-tab>
+</mat-tab-group>
